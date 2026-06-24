@@ -65,8 +65,28 @@ class SettingsController extends GetxController {
       'countryCode': 'ES',
       'description': 'Spanish',
     },
-  };
 
+    'ur_PK': {
+      'languageCode': 'ur',
+      'countryCode': 'PK',
+      'description': 'Urdu',
+    },
+    'hi_IN': {
+      'languageCode': 'hi',
+      'countryCode': 'IN',
+      'description': 'Hindi',
+    },
+    'ar_SA': {
+      'languageCode': 'ar',
+      'countryCode': 'SA',
+      'description': 'Arabic',
+    },
+    'zh_CN': {
+      'languageCode': 'zh',
+      'countryCode': 'CN',
+      'description': 'Chinese',
+    },
+  };
   @override
   void onInit() async {
     super.onInit();
@@ -169,7 +189,7 @@ class SettingsController extends GetxController {
     is24HrsEnabled.value =
         await _secureStorageProvider.read24HoursEnabled(key: _f24HrsEnabledKey);
     isFlipToSnooze.value =
-    await _secureStorageProvider.readFlipToSnooze(key: _flipToSnooze);
+        await _secureStorageProvider.readFlipToSnooze(key: _flipToSnooze);
 
     isSortedAlarmListEnabled.value = await _secureStorageProvider
         .readSortedAlarmListValue(key: _sortedAlarmListKey);
@@ -224,12 +244,14 @@ class SettingsController extends GetxController {
     is24HrsEnabled.value = enabled;
     _save24HoursFormatPreference();
   }
+
   void _savePreferenceFTS() async {
     await _secureStorageProvider.writeHapticFeedbackValue(
       key: _flipToSnooze,
       isHapticFeedbackEnabled: isFlipToSnooze.value,
     );
   }
+
   void toggleFlipToSnooze(bool enabled) {
     isFlipToSnooze.value = enabled;
     _savePreferenceFTS();
